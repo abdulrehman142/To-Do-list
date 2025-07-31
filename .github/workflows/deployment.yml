@@ -8,10 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:ls .github/workflows
-
+    strategy:
       matrix:
-        node-version: [18.x]  # Use latest stable Node
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v2
