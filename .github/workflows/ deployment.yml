@@ -8,7 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
+    strategy:ls .github/workflows
+
       matrix:
         node-version: [18.x]  # Use latest stable Node
 
