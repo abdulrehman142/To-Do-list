@@ -22,7 +22,7 @@ function Navbar() {
         </ul>
       </div>
 
-     // Mobile menu for smaller screens
+    
       <div className="sm:hidden text-center text-sm py-2 space-y-1">
         <a href="/" className="block hover:text-amber-400">Home</a>
         <a href="/ToDo" className="block hover:text-amber-400">To-Do</a>
