@@ -54,75 +54,81 @@ function ToDoList() {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 max-w-2xl mx-auto">
+      <h1 className="text-2xl font-bold text-center mb-6">My To-Do List</h1>
+
       <form
         onSubmit={handleSubmit}
-        className="flex justify-center items-center gap-2"
+        className="flex flex-col sm:flex-row justify-center items-center gap-2"
       >
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Add a new task"
-          className="w-[400px] p-2 border rounded"
+          className="w-full sm:w-96 p-2 border rounded"
         />
         <button
           type="submit"
-          className="bg-[#280cb3] text-white px-4 py-2 rounded hover:text-amber-400 font-bold"
+          className="bg-[#280cb3] text-white px-4 py-2 rounded hover:text-amber-400 font-bold w-full sm:w-auto"
         >
           + Add Task
         </button>
       </form>
 
-      <ul className="mt-6 space-y-2 max-w-md mx-auto">
-        {tasks.map((task, index) => (
-          <li
-            key={index}
-            className="flex justify-between items-start border p-3 rounded shadow-sm flex-col sm:flex-row sm:items-center"
-          >
-            <div className="flex-1">
-              {editIndex === index ? (
-                <input
-                  value={editValue}
-                  onChange={(e) => setEditValue(e.target.value)}
-                  className="border p-1 w-full mb-1 rounded"
-                />
-              ) : (
-                <>
-                  <div className="block font-medium">{task.text}</div>
-                  <div className="text-sm text-gray-500">
-                    Added: {task.createdAt}
-                  </div>
-                </>
-              )}
-            </div>
+      {tasks.length === 0 ? (
+        <p className="text-center text-gray-400 mt-6">No tasks yet. Add one!</p>
+      ) : (
+        <ul className="mt-6 space-y-2 max-w-md mx-auto">
+          {tasks.map((task, index) => (
+            <li
+              key={index}
+              className="flex justify-between items-start border p-3 rounded shadow-sm flex-col sm:flex-row sm:items-center transition-all"
+            >
+              <div className="flex-1 w-full">
+                {editIndex === index ? (
+                  <input
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value)}
+                    className="border p-1 w-full mb-1 rounded"
+                  />
+                ) : (
+                  <>
+                    <div className="block font-medium break-words">{task.text}</div>
+                    <div className="text-sm text-gray-500">
+                      Added: {task.createdAt}
+                    </div>
+                  </>
+                )}
+              </div>
 
-            <div className="flex gap-2 mt-2 sm:mt-0">
-              {editIndex === index ? (
+              <div className="flex gap-2 mt-2 sm:mt-0 sm:ml-4">
+                {editIndex === index ? (
+                  <button
+                    onClick={() => handleSave(index)}
+                    className="text-green-600 hover:text-green-800 font-bold"
+                  >
+                    Save
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleEdit(index)}
+                    className="text-blue-600 hover:text-blue-800 font-bold"
+                  >
+                    Edit
+                  </button>
+                )}
                 <button
-                  onClick={() => handleSave(index)}
-                  className="text-green-600 hover:text-green-800 font-bold"
+                  onClick={() => handleDelete(index)}
+                  className="text-red-600 hover:text-red-800 font-bold"
                 >
-                  Save
+                  ✕
                 </button>
-              ) : (
-                <button
-                  onClick={() => handleEdit(index)}
-                  className="text-blue-600 hover:text-blue-800 font-bold"
-                >
-                  Edit
-                </button>
-              )}
-              <button
-                onClick={() => handleDelete(index)}
-                className="text-red-600 hover:text-red-800 font-bold"
-              >
-                ✕
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
