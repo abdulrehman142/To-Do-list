@@ -6,20 +6,21 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ToDo from './pages/ToDo';
 
-function App() {
+const App = () => {
   return (
     <div>
       <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/ToDo" element={<ToDo />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Contact" element={<Contact />} />
+          <Route path="/todo" element={<ToDo />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
     </div>
   );
-}
+};
+
 
 export default App;
